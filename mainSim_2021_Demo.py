@@ -2,7 +2,7 @@ from __future__ import division
 from collections import defaultdict
 import os,sys
 import io
-#test2
+
 #Change to your PSS/e Location and set up paths
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37") #Give the path to PSSBIN to imoport psspy
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSBIN")
