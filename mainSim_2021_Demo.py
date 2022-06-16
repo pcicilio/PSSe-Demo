@@ -10,7 +10,7 @@ sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSLIB")
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\EXAMPLE")
 os.environ['PATH'] = (r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37;" + r"C:\Program Files (x86)\PTI\PSSE34\PSSBIN;" + r"C:\Program Files (x86)\PTI\PSSE34\EXAMPLE;" + os.environ['PATH'])
 
-
+#testAF
 import psse34 #addition necessary for new version 34
 import psspy
 #import pssarrays #loads and saves data from PSSe functions (short circuit)
