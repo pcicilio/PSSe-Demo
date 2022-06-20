@@ -9,7 +9,7 @@ sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSBIN")
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSLIB")
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\EXAMPLE")
 os.environ['PATH'] = (r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37;" + r"C:\Program Files (x86)\PTI\PSSE34\PSSBIN;" + r"C:\Program Files (x86)\PTI\PSSE34\EXAMPLE;" + os.environ['PATH'])
-
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 import psse34 #addition necessary for new version 34
 import psspy
@@ -40,16 +40,16 @@ redirect.psse2py();
 #_s=psspy.getdefaultchar()
 #redirect.psse2py()
 
-# For DLL import Error: Following checks path, path is good
-import os
-PSSE_PATH = r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37" 
-if not os.path.exists(PSSE_PATH):    
-    print ("Bad path")
-#Tries to find dll in path, is also good
-import glob
-fns = glob.glob(os.path.join(PSSE_PATH, 'psspy.*'))
-if len(fns) == 0:
-   print ("Who moved my libraries")
+# # For DLL import Error: Following checks path, path is good
+# import os
+# PSSE_PATH = r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37" 
+# if not os.path.exists(PSSE_PATH):    
+#     print ("Bad path")
+# #Tries to find dll in path, is also good
+# import glob
+# fns = glob.glob(os.path.join(PSSE_PATH, 'psspy.*'))
+# if len(fns) == 0:
+#    print ("Who moved my libraries")
 
 
 ## Run PSSe Dyanmic Simulation using PSSe Python API =====================================================================================================
@@ -66,8 +66,8 @@ def Run_SIM(sav_file,snp_file,dyr_file,out_file,disturbance_type,channel_option,
 # documentation, which is located in the PSSe DOCS folder where PSSe is installed.
 
     # Write .sav case name and .outx file name
-    sav = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Demo_Models\%s""" %sav_file    #find .sav file
-    out = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Outputs\%s""" %out_file       #name .outx file
+    sav = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Demo_Models\%s""" %sav_file    #find .sav file
+    out = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Outputs\%s""" %out_file       #name .outx file
 
     ierr = [1]*30 #check and record for error codes
     output = io.StringIO()
@@ -75,7 +75,7 @@ def Run_SIM(sav_file,snp_file,dyr_file,out_file,disturbance_type,channel_option,
         ierr[0] = psspy.psseinit(200000) #initialize PSSe. This number needs to be high, otherwise there will be not enough output channels available for recording outputs
         ierr[1] = psspy.case(sav) #load case information (.sav file)
         if snp_file != "None":
-            snp = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Demo_Models\%s""" %snp_file   #find .snp file
+            snp = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Demo_Models\%s""" %snp_file   #find .snp file
             ierr[2] = psspy.rstr(snp) #load dynamic snapshot information (.snp file)
         ierr[3] = psspy.fnsl([0,0,0,1,1,0,99,0]) #Solves power flow using fixed slope decoupled Newton-Raphson
         #ierr[3] = psspy.mslv([1,0,0,1,1,0]) #solves power flow using modified gauss-seidel method
@@ -87,7 +87,7 @@ def Run_SIM(sav_file,snp_file,dyr_file,out_file,disturbance_type,channel_option,
         ierr[9] = psspy.fact()
         ierr[10] = psspy.tysl(0)
         if dyr_file != "None":
-            dyre = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Demo_Models\%s""" %dyr_file   #find .dyr file
+            dyre = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Demo_Models\%s""" %dyr_file   #find .dyr file
             ierr[11] = psspy.dyre_new([1,1,1,1],dyre,"","","")
         
         # For when not using a subsystem for channels use chsb(0,1..., with subsystem do chsb(0,0...
@@ -210,10 +210,10 @@ def SortResults(d,e,z):
 ## Plot Output Results ===================================================================================================
 def PlotResults(plot_file,POWR,FREQ,VOLT,excel_file,left_limit,right_limit):
     
-    png_POWR = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Outputs\POWR_%s""" %plot_file
-    png_FREQ = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Outputs\FREQ_%s""" %plot_file
-    png_VOLT = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Outputs\VOLT_%s""" %plot_file
-    xlsx = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Outputs\%s""" %excel_file
+    png_POWR = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Outputs\POWR_%s""" %plot_file
+    png_FREQ = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Outputs\FREQ_%s""" %plot_file
+    png_VOLT = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Outputs\VOLT_%s""" %plot_file
+    xlsx = r"""C:\Users\lebredeson\Documents\PSSe-Demo\Outputs\%s""" %excel_file
 
     plt.figure
     POWR.plot(linewidth=0.5)
@@ -308,6 +308,7 @@ if __name__ == "__main__":
     t1 = time.time()
     total  = t1-t0
     print(total) #time for simulation
+    plt.show()
     
 #======================================================================================================================================================	
 
