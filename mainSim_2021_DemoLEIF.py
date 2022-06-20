@@ -4,11 +4,11 @@ import os,sys
 import io
 
 #Change to your PSS/e Location and set up paths
-sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37") #Give the path to PSSBIN to imoport psspy
+sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSPY34") #Give the path to PSSBIN to imoport psspy
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSBIN")
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\PSSLIB")
 sys.path.append(r"C:\Program Files (x86)\PTI\PSSE34\EXAMPLE")
-os.environ['PATH'] = (r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37;" + r"C:\Program Files (x86)\PTI\PSSE34\PSSBIN;" + r"C:\Program Files (x86)\PTI\PSSE34\EXAMPLE;" + os.environ['PATH'])
+os.environ['PATH'] = (r"C:\Program Files (x86)\PTI\PSSE34\PSSPY34;" + r"C:\Program Files (x86)\PTI\PSSE34\PSSBIN;" + r"C:\Program Files (x86)\PTI\PSSE34\EXAMPLE;" + os.environ['PATH'])
 
 
 import psse34 #addition necessary for new version 34

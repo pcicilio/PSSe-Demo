@@ -42,7 +42,7 @@ redirect.psse2py();
 
 # For DLL import Error: Following checks path, path is good
 import os
-PSSE_PATH = r"C:\Program Files (x86)\PTI\PSSExplore34\PSSPY27" 
+PSSE_PATH = r"C:\Program Files (x86)\PTI\PSSE34\PSSPY37" 
 if not os.path.exists(PSSE_PATH):    
     print ("Bad path")
 #Tries to find dll in path, is also good
@@ -75,7 +75,7 @@ def Run_SIM(sav_file,snp_file,dyr_file,out_file,disturbance_type,channel_option,
         ierr[0] = psspy.psseinit(200000) #initialize PSSe. This number needs to be high, otherwise there will be not enough output channels available for recording outputs
         ierr[1] = psspy.case(sav) #load case information (.sav file)
         if snp_file != "None":
-            snp = r"""C:\Users\pcicilio\Documents\PSSe_Demo\Demo_Models\%s""" %snp_file   #find .snp file
+            snp = r"""C:\Users\lebredeson\Documents\PSSe_Demo\Demo_Models\%s""" %snp_file   #find .snp file
             ierr[2] = psspy.rstr(snp) #load dynamic snapshot information (.snp file)
         ierr[3] = psspy.fnsl([0,0,0,1,1,0,99,0]) #Solves power flow using fixed slope decoupled Newton-Raphson
         #ierr[3] = psspy.mslv([1,0,0,1,1,0]) #solves power flow using modified gauss-seidel method
